@@ -19,6 +19,9 @@
 #define TDLOCK 0
 #define KLOCK TD(TDLOCK)
 
+// CTRL + PrintScreen
+#define CPSCRN LCTL(KC_PSCREEN)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	/* 0: qwerty */
 	[LBASE] = {
@@ -34,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		{ KC_CAPS, _______, KC_UP  , _______, _______, _______, _______, _______, _______, _______, KC_PSCR, KC_SLCK, KC_PAUS, KC_INS  },
 		{ _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGUP, _______, _______ },
 		{ _______, xxxxxxx, _______, _______, _______, _______, _______, _______, _______, _______, KC_END , KC_PGDN, _______, _______ },
-		{ _______, _______, _______, xxxxxxx, xxxxxxx, TGARR  , xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, _______, _______, _______, _______ }
+		{ _______, CPSCRN , _______, xxxxxxx, xxxxxxx, TGARR  , xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, _______, _______, _______, _______ }
 	},
 	/* 2: arrows overlay */
 	[LARR] = {
