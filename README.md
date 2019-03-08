@@ -1,4 +1,4 @@
-# Hamcha's GH60 layout
+# Hamcha's DZ60 layout
 
 Clone into
 
