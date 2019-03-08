@@ -2,5 +2,5 @@
 
 Clone into
 
-> qmk_firmware\keyboards\gh60\keymaps
+> qmk_firmware\keyboards\dz60\keymaps
 
