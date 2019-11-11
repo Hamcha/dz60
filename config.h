@@ -23,9 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#define FORCE_NKRO
 
 /* key combination for magic key command */
-#define IS_COMMAND() ( \
-  keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
-)
+#define IS_COMMAND() (keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)))
 
 /*
  * Feature disable options
@@ -42,13 +40,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_LAYER
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
-//#define NO_ACTION_MACRO
-//#define NO_ACTION_FUNCTION
 
 #define TAPPING_TERM 200
 #define COMBO_TERM 30
-#define COMBO_COUNT 2
-#undef  RGBLIGHT_ANIMATIONS
+#define COMBO_COUNT 3
+#define RETRO_TAPPING
+
+#undef RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+
+#define AUTO_SHIFT_TIMEOUT 200
+#define NO_AUTO_SHIFT_ALPHA
 
 #endif

@@ -57,12 +57,19 @@ const uint16_t PROGMEM fn_actions[] = {};
 
 qk_tap_dance_action_t tap_dance_actions[] = {[TDLOCK] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, LGUI(KC_L))};
 
-enum { SNIP_FOR, SNIP_IF };
+enum { SNIP_FOR, SNIP_IF, SNIP_LOG };
 
-const uint16_t PROGMEM snip_for_combo[] = {KC_F, KC_R, COMBO_END};
-const uint16_t PROGMEM snip_if_combo[]  = {KC_I, KC_F, COMBO_END};
+const uint16_t PROGMEM snip_for_combo[] = {KC_F, KC_O, KC_R, COMBO_END};
+const uint16_t PROGMEM snip_if_combo[]  = {KC_I, KC_F, KC_E, COMBO_END};
+const uint16_t PROGMEM snip_log_combo[] = {KC_L, KC_O, KC_G, COMBO_END};
 
-combo_t key_combos[COMBO_COUNT] = {[SNIP_FOR] = COMBO_ACTION(snip_for_combo), [SNIP_IF] = COMBO_ACTION(snip_if_combo)};
+// clang-format off
+combo_t key_combos[COMBO_COUNT] = {
+	[SNIP_FOR] = COMBO_ACTION(snip_for_combo),
+	[SNIP_IF] = COMBO_ACTION(snip_if_combo),
+	[SNIP_LOG] = COMBO_ACTION(snip_log_combo)
+};
+// clang-format on
 
 #define SNIP_SHORTCUT LCTL(LSFT(KC_I))
 #define VSCODE_SNIPPET(x)      \
@@ -79,14 +86,14 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
             case SNIP_IF:
                 VSCODE_SNIPPET("if");
                 break;
+            case SNIP_LOG:
+                VSCODE_SNIPPET("log");
+                break;
         }
     }
 }
 
 /*
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
-};
-
 void matrix_scan_user(void) {
 };
 */
