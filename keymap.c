@@ -5,8 +5,8 @@
 
 // Layers
 #define LBASE 0
-#define LFN   1
-#define LARR  2
+#define LFN 1
+#define LARR 2
 
 // Arrow layer toggle
 #define TGARR TG(LARR)
@@ -24,6 +24,7 @@
 // CTRL + K (Origami)
 #define ORIGAMI LCTL(KC_K)
 
+// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	/* 0: qwerty */
 	[LBASE] = LAYOUT(
@@ -50,12 +51,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, _______, _______,                            _______, _______, _______, xxxxxxx, KC_RALT, xxxxxxx, KC_RGUI, KC_RCTL
 	)
 };
+// clang-format on
 
 const uint16_t PROGMEM fn_actions[] = {};
 
-qk_tap_dance_action_t tap_dance_actions[] = {
- [TDLOCK] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, LGUI(KC_L))
-};
+qk_tap_dance_action_t tap_dance_actions[] = {[TDLOCK] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, LGUI(KC_L))};
+
+enum { SNIP_FOR, SNIP_IF };
+
+const uint16_t PROGMEM snip_for_combo[] = {KC_F, KC_R, COMBO_END};
+const uint16_t PROGMEM snip_if_combo[]  = {KC_I, KC_F, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {[SNIP_FOR] = COMBO_ACTION(snip_for_combo), [SNIP_IF] = COMBO_ACTION(snip_if_combo)};
+
+#define SNIP_SHORTCUT LCTL(LSFT(KC_I))
+#define VSCODE_SNIPPET(x)      \
+    tap_code16(SNIP_SHORTCUT); \
+    SEND_STRING(x);            \
+    tap_code16(KC_ENT);
+
+void process_combo_event(uint8_t combo_index, bool pressed) {
+    if (pressed) {
+        switch (combo_index) {
+            case SNIP_FOR:
+                VSCODE_SNIPPET("for");
+                break;
+            case SNIP_IF:
+                VSCODE_SNIPPET("if");
+                break;
+        }
+    }
+}
 
 /*
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {

@@ -57,6 +57,7 @@ BOOTMAGIC_ENABLE = yes		# Virtual DIP switch configuration(+1000)
 # CONSOLE_ENABLE = yes		# Console for debug(+400)
 # COMMAND_ENABLE = yes		# Commands for debug and configuration
 KEYBOARD_LOCK_ENABLE = yes	# Allow locking of keyboard via magic key
+COMBO_ENABLE = yes # Allow combos
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
 # SLEEP_LED_ENABLE = yes	# Breathing sleep LED during USB suspend
 NKRO_ENABLE = yes			# USB Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
