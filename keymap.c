@@ -57,17 +57,38 @@ const uint16_t PROGMEM fn_actions[] = {};
 
 qk_tap_dance_action_t tap_dance_actions[] = {[TDLOCK] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, LGUI(KC_L))};
 
-enum { SNIP_FOR, SNIP_IF, SNIP_LOG };
+enum { SNIP_FOR, SNIP_IF, SNIP_LOG, SNIP_COM, SNIP_CON, SHCUT_CODE, SHCUT_TERM, SHCUT_FIREFOX, SHCUT_CHROME, SHCUT_TELEGRAM, SHCUT_RIPCORD, SHCUT_DFU, SHCUT_NEWTAB };
 
 const uint16_t PROGMEM snip_for_combo[] = {KC_F, KC_O, KC_R, COMBO_END};
 const uint16_t PROGMEM snip_if_combo[]  = {KC_I, KC_F, KC_E, COMBO_END};
 const uint16_t PROGMEM snip_log_combo[] = {KC_L, KC_O, KC_G, COMBO_END};
+const uint16_t PROGMEM snip_com_combo[] = {KC_C, KC_O, KC_M, COMBO_END};
+const uint16_t PROGMEM snip_con_combo[] = {KC_C, KC_O, KC_N, COMBO_END};
+
+const uint16_t PROGMEM shcut_code_combo[]     = {KC_O, KC_D, KC_E, COMBO_END};
+const uint16_t PROGMEM shcut_term_combo[]     = {KC_T, KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM shcut_firefox_combo[]  = {KC_F, KC_I, KC_R, COMBO_END};
+const uint16_t PROGMEM shcut_chrome_combo[]   = {KC_B, KC_R, KC_O, COMBO_END};
+const uint16_t PROGMEM shcut_telegram_combo[] = {KC_T, KC_E, KC_G, COMBO_END};
+const uint16_t PROGMEM shcut_ripcord_combo[]  = {KC_R, KC_I, KC_P, COMBO_END};
+const uint16_t PROGMEM shcut_dfu_combo[]      = {KC_D, KC_F, KC_U, COMBO_END};
+const uint16_t PROGMEM shcut_newtab_combo[]   = {KC_T, KC_N, KC_B, COMBO_END};
 
 // clang-format off
 combo_t key_combos[COMBO_COUNT] = {
 	[SNIP_FOR] = COMBO_ACTION(snip_for_combo),
 	[SNIP_IF] = COMBO_ACTION(snip_if_combo),
-	[SNIP_LOG] = COMBO_ACTION(snip_log_combo)
+	[SNIP_LOG] = COMBO_ACTION(snip_log_combo),
+    [SNIP_COM] = COMBO_ACTION(snip_com_combo),
+    [SNIP_CON] = COMBO_ACTION(snip_con_combo),
+	[SHCUT_CODE] = COMBO_ACTION(shcut_code_combo),
+	[SHCUT_TERM] = COMBO_ACTION(shcut_term_combo),
+	[SHCUT_FIREFOX] = COMBO_ACTION(shcut_firefox_combo),
+	[SHCUT_CHROME] = COMBO_ACTION(shcut_chrome_combo),
+	[SHCUT_TELEGRAM] = COMBO_ACTION(shcut_telegram_combo),
+	[SHCUT_RIPCORD] = COMBO_ACTION(shcut_ripcord_combo),
+    [SHCUT_DFU] = COMBO_ACTION(shcut_dfu_combo),
+    [SHCUT_NEWTAB] = COMBO_ACTION(shcut_newtab_combo)
 };
 // clang-format on
 
@@ -88,6 +109,38 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 break;
             case SNIP_LOG:
                 VSCODE_SNIPPET("log");
+                break;
+            case SNIP_COM:
+                VSCODE_SNIPPET("/*");
+                break;
+            case SNIP_CON:
+                VSCODE_SNIPPET("//");
+                break;
+            case SHCUT_CODE:
+                tap_code16(KC_F13);
+                break;
+            case SHCUT_TERM:
+                tap_code16(KC_F14);
+                break;
+            case SHCUT_FIREFOX:
+                tap_code16(KC_F15);
+                break;
+            case SHCUT_CHROME:
+                tap_code16(KC_F16);
+                break;
+            case SHCUT_TELEGRAM:
+                tap_code16(KC_F17);
+                break;
+            case SHCUT_RIPCORD:
+                tap_code16(KC_F18);
+                break;
+            case SHCUT_DFU:
+                tap_code16(KC_F19);
+                wait_ms(100);
+                bootloader_jump();
+                break;
+            case SHCUT_NEWTAB:
+                tap_code16(LCTL(KC_T));
                 break;
         }
     }
